@@ -1,0 +1,23 @@
+{
+    "name": "mediashare/kernel",
+    "type": "library",
+    "require": {
+        "mediashare/modules-provider": "^0.2.2"
+    },
+    "require-dev": {
+        "tracy/tracy": "^2.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mediashare",
+            "email": "mediashare.supp@gmail.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "autoload": {
+        "psr-4": {
+            "Mediashare\\Kernel\\": "src/"
+        }
+    }
+}

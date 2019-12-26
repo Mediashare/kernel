@@ -7,12 +7,16 @@ Class Kernel
 {
     public $modules = [];
     public function run() {
-        $this->modules = $this->getModulesCluster()->modules;
+        $this->modules = $this->getModules()->modules;
     }
 
-    public function getModulesCluster() {
+    public function getModules() {
         $provider = new Provider();
         $provider->run();
         return $provider;
+    }
+
+    public function get(string $kernel) {
+        return $this->modules[$kernel];
     }
 }

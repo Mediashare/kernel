@@ -5,7 +5,7 @@ use Mediashare\Kernel\Provider;
 
 Class Kernel
 {
-    public $modules = [];
+    public $modules;
     public function run() {
         $this->modules = $this->getModules()->modules;
     }
@@ -16,7 +16,12 @@ Class Kernel
         return $provider;
     }
 
-    public function get(string $kernel) {
-        return $this->modules[$kernel];
+    public function get(string $query) {
+        foreach ($this->modules as $name => $module) {
+            if ($name == $query) {
+                return $module;
+            }
+        }
+        return false;
     }
 }

@@ -4,4 +4,4 @@ use Mediashare\Kernel\Kernel;
 
 $kernel = new Kernel();
 $kernel->run();
-dump($kernel);
+// dump($kernel);die;

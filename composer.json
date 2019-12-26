@@ -1,5 +1,6 @@
 {
     "name": "mediashare/kernel",
+    "description": "Mediashare Kernel with all public modules provided.",
     "type": "library",
     "require": {
         "mediashare/modules-provider": "^0.2.2"

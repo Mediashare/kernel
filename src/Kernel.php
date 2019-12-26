@@ -24,4 +24,14 @@ Class Kernel
         }
         return false;
     }
+
+    public function getContainer(string $query) {
+        foreach ($this->modules as $module) {
+            if ($module->category == $query) {
+                $modules[$module->name] = $module;
+            }
+        }
+        if ($modules):return $modules;
+        else:return false;endif;
+    }
 }

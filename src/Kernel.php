@@ -22,7 +22,7 @@ Class Kernel
                 return $module;
             }
         }
-        return false;
+        return trigger_error("Module [".$query."] is not found in modules", E_USER_ERROR);
     }
 
     public function getContainer(string $query) {
@@ -32,6 +32,8 @@ Class Kernel
             }
         }
         if ($modules):return $modules;
-        else:return false;endif;
+        else:
+            return trigger_error("Container [".$query."] is not found in modules", E_USER_ERROR);
+        endif;
     }
 }

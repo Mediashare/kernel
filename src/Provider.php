@@ -12,14 +12,14 @@ class Provider
         $this->addModules($this->getModules("Test"));
         return $this;
     }
-    public function getModules(string $category) {
+    public function getModules(string $container) {
         $config = new Config();
-        $config->setModulesDir(__DIR__.'/Modules/'.$category.'/');
+        $config->setModulesDir(__DIR__.'/Modules/'.$container.'/');
         $config->setNamespace("Mediashare\\Modules\\");
         $modules = new Modules($config);
         $modules = $modules->getModules();
         foreach ($modules as $index => $module) {
-            $module->category = $category;
+            $module->container = $container;
             $name = str_replace($config->getNamespace(), '', get_class($module));
             $modules[$name] = $module;
             unset($modules[$index]);

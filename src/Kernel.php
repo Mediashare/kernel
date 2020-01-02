@@ -27,7 +27,7 @@ Class Kernel
 
     public function getContainer(string $query) {
         foreach ($this->modules as $module) {
-            if ($module->category == $query) {
+            if ($module->container == $query) {
                 $modules[$module->name] = $module;
             }
         }

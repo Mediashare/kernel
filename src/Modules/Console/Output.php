@@ -7,6 +7,28 @@ namespace Mediashare\Modules;
  */
 class Output
 {   
+    public function ask(string $question, $default = true) {
+        $input = \readline($question);
+        
+        if($input == 'n' || $input == 'N' || $input == 'No' || $input == 'no'):
+            return false;
+        endif;
+        if($input == 'y' || $input == 'Y' || $input == 'Yes' || $input == 'yes'):
+            return true;
+        endif;
+        
+        // Default value
+        if (empty($input)):
+            if ($default):
+                return true;
+            else:
+                return false;
+            endif;
+        endif;
+
+        return $input;
+    }
+
     public function progressBar(int $counter, int $max_counter, ?string $message) {
         $climate = new \League\CLImate\CLImate;
         // $climate->clear();

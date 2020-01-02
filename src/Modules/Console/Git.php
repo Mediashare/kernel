@@ -5,6 +5,7 @@ namespace Mediashare\Modules;
  * Git
  * Php using git command line tool for 
  * ["add .", "commit -m '$this->message'", "push"]
+ * @source http://slote.me/Kernel/git.html
  */
 class Git
 {

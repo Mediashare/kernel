@@ -3,6 +3,7 @@ namespace Mediashare\Modules;
 
 /**
  * Output
+ * @source http://slote.me/Kernel/output.html
  */
 class Output
 {   

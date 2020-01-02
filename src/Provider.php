@@ -10,6 +10,7 @@ class Provider
     public function run() {
         $this->addModules($this->getModules("SEO"));
         $this->addModules($this->getModules("Test"));
+        $this->addModules($this->getModules("Console"));
         return $this;
     }
     public function getModules(string $container) {

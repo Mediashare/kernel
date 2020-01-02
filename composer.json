@@ -3,7 +3,8 @@
     "description": "Mediashare Kernel with all public modules provided.",
     "type": "library",
     "require": {
-        "mediashare/modules-provider": "^0.2.2"
+        "mediashare/modules-provider": "^0.2.2",
+        "league/climate": "^3.5"
     },
     "require-dev": {
         "tracy/tracy": "^2.7"

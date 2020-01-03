@@ -61,4 +61,9 @@ class Git
         $this->shell('git push');
         return $this;
     }
+
+    public function setMessage(string $message) {
+        $this->message = $message;
+        return $this;
+    }
 }

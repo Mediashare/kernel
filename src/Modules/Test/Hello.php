@@ -13,4 +13,9 @@ class Hello
         echo $message;
         return $message;
     }
+    
+    public function setMessage(string $message) {
+        $this->message = $message;
+        return $this;
+    }
 }

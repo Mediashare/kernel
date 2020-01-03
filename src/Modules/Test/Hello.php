@@ -5,7 +5,10 @@ namespace Mediashare\Modules;
 class Hello
 {
     public $prefix;
-    public function echo(?string $message) {
+    public function run() {
+        $this->echo();
+    }
+    public function echo(?string $message = null) {
         if (empty($message)):
             $message = "Not message recorded :(";
         endif;

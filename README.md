@@ -26,5 +26,28 @@ $kernel = new Kernel();
 $kernel->run();
 
 $hello = $kernel->get('Hello');
-$test = $hello->echo("Test \n");
+$hello->setMessage("Hello World\n")
+$test = $hello->run();
+```
+
+### Cluster
+Les clusters permettent l'automatisation de process avec la mise en file de modules qui s'éxécuteront via la function run() l'un à la suite de l'autre.
+```php
+<?php
+// ./index.php
+require 'vendor/autoload.php';
+use Mediashare\Kernel\Kernel;
+use Mediashare\Kernel\Cluster;
+
+$kernel = new Kernel();
+$kernel->run();
+
+// Using Cluster
+$cluster = new Cluster(); // Create Cluster
+$cluster->setModules([
+    clone $kernel->get('Hello')->setMessage("[RUN] Git push \n"), // Echo
+    clone $kernel->get('Git')->setMessage('CodeReview Cluster'), // Init message for commit
+    clone $kernel->get('Hello')->setMessage("[END] Git push \n"), // Echo
+]);
+$cluster->run();
 ```

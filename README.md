@@ -34,7 +34,6 @@ $test = $hello->run();
 Les clusters permettent l'automatisation de process avec la mise en file de modules qui s'éxécuteront via la function run() l'un à la suite de l'autre.
 ```php
 <?php
-// ./index.php
 require 'vendor/autoload.php';
 use Mediashare\Kernel\Kernel;
 use Mediashare\Kernel\Cluster;

@@ -25,15 +25,15 @@ Class Kernel
         return trigger_error("Module [".$query."] is not found in modules", E_USER_ERROR);
     }
 
-    public function getContainer(string $query) {
+    public function getContainer(string $container) {
         foreach ($this->modules as $module) {
-            if ($module->container == $query) {
+            if ($module->container == $container) {
                 $modules[$module->name] = $module;
             }
         }
         if ($modules):return $modules;
         else:
-            return trigger_error("Container [".$query."] is not found in modules", E_USER_ERROR);
+            return trigger_error("Container [".$container."] is not found in modules", E_USER_ERROR);
         endif;
     }
 }

@@ -8,6 +8,7 @@ class Provider
 {
     public $modules = [];
     public function run() {
+        $this->addModules($this->getModules("Global"));
         $this->addModules($this->getModules("SEO"));
         $this->addModules($this->getModules("Test"));
         $this->addModules($this->getModules("Console"));

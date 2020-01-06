@@ -4,7 +4,8 @@
     "type": "library",
     "require": {
         "mediashare/modules-provider": "^0.2.2",
-        "league/climate": "^3.5"
+        "league/climate": "^3.5",
+        "twig/twig": "^3.0"
     },
     "require-dev": {
         "tracy/tracy": "^2.7"

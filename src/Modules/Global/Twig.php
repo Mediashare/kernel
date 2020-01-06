@@ -8,7 +8,7 @@ class Twig
     public $twig;
     public function run() {
         $loader = new \Twig\Loader\FilesystemLoader('templates');
-        if ($cache):
+        if ($this->cache):
             $this->twig = new \Twig\Environment($loader, ['cache' => $this->cache]);
         else:
             $this->twig = new \Twig\Environment($loader);

@@ -2,6 +2,7 @@
 namespace Mediashare\Modules;
 
 use ZipArchive;
+use Mediashare\Modules\Mkdir;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
@@ -13,6 +14,12 @@ class Archive
         if (!extension_loaded('zip') || !file_exists($this->source)) {
             return false;
         }
+
+        // Create folder destination
+        $mkdir = new Mkdir();
+        $mkdir->setPath(dirname($this->destination));
+        $mkdir->run();
+        
         $zip = new ZipArchive();
         if (!$zip->open($this->destination, ZIPARCHIVE::CREATE)) {
             return false;
@@ -21,7 +28,7 @@ class Archive
         $this->source = str_replace('\\', '/', realpath($this->source));
         $flag = basename($this->source) . '/';
         //$zip->addEmptyDir(basename($this->source) . '/');
-    
+        
         if (is_dir($this->source) === true) {
             $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->source), RecursiveIteratorIterator::SELF_FIRST);
             foreach ($files as $file) {

@@ -1,6 +1,5 @@
 <?php
 namespace Mediashare\Modules;
-
 /**
  * Metadata
  * Get all metadata from a webpage.
@@ -20,7 +19,7 @@ class Metadata {
         if ($title->count()) {
             return $title->text();
         } else {
-            $this->errors = [
+            $this->errors[] = [
                 'type' => 'SEO',
                 'message' => 'Title not found!',
                 'url' => (string) $this->url,
@@ -43,6 +42,13 @@ class Metadata {
                 $result[$type] = $meta[2];
             }
         }
+        if (empty($result['description'])):
+            $this->errors[] = [
+                'type' => 'SEO',
+                'message' => 'Meta description not found!',
+                'url' => (string) $this->url,
+            ];
+        endif;
         return $result;
     }
 }

@@ -31,7 +31,7 @@ Class Kernel
                 $modules[$module->name] = $module;
             }
         }
-        if ($modules):return $modules;
+        if (!empty($modules)):return $modules;
         else:
             return trigger_error("Container [".$container."] is not found in modules", E_USER_ERROR);
         endif;

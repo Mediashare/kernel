@@ -2,12 +2,12 @@
 namespace Mediashare\Modules;
 Class Curl
 {
-    public function get(string $url) {
-        $result = $this->request($url);
+    public function get(string $url, ?array $headers = null) {
+        $result = $this->request($url, $headers);
         return $result;
     }
-    public function post(string $url, ?array $arguments = null) {
-        $result = $this->request($url, $arguments);
+    public function post(string $url, ?array $arguments = null, ?array $headers = null) {
+        $result = $this->request($url, $arguments, $headers);
         return $result;
     }
     public function request(string $url, ?array $arguments = null, ?array $headers = null) {

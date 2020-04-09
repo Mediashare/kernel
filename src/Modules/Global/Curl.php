@@ -17,7 +17,6 @@ Class Curl
         curl_setopt($curl, CURLOPT_URL, $url);
 
         if ($arguments): // Post Request
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $arguments);
         endif;

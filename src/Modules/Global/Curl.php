@@ -10,7 +10,7 @@ Class Curl
         $result = $this->request($url, $arguments);
         return $result;
     }
-    public function request(string $url, ?array $arguments = null) {
+    public function request(string $url, ?array $arguments = null, ?array $headers = null) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -20,6 +20,10 @@ Class Curl
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $arguments);
+        endif;
+
+        if ($headers):
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         endif;
 
         $result = curl_exec($curl);

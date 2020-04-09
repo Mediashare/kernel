@@ -12,7 +12,7 @@ Class Curl
     }
     public function request(string $url, ?array $arguments = null, ?array $headers = null) {
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HEADER, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_URL, $url);
 

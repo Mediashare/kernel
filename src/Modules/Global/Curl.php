@@ -3,7 +3,7 @@ namespace Mediashare\Modules;
 Class Curl
 {
     public function get(string $url, ?array $headers = null) {
-        $result = $this->request($url, $headers);
+        $result = $this->request($url, null, $headers);
         return $result;
     }
     public function post(string $url, ?array $arguments = null, ?array $headers = null) {

@@ -8,6 +8,7 @@ Class Kernel
     public $modules;
     public function run() {
         $this->modules = $this->getModules()->modules;
+        return $this;
     }
 
     public function getModules() {

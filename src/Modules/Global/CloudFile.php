@@ -1,6 +1,8 @@
 <?php
 namespace Mediashare\Modules;
 
+use Mediashare\Kernel\Kernel;
+
 Class CloudFile {
     public $api_url;
     
@@ -45,8 +47,7 @@ Class CloudFile {
     
     private function request(string $url, ?array $queries = [], ?string $apiKey = null) {
         $kernel = new Kernel();
-        $kernel->run();
-        $request = $kernel->get('Curl');
+        $request = $kernel->run()->get('Curl');
         
         $url = rtrim($this->api_url, '/').$url;
         if ($apiKey): $headers = ['apikey: '.$apiKey];
@@ -61,12 +62,6 @@ Class CloudFile {
         
         if ($result):
             return $result;
-        else:
-            echo $response;die;
-            return new JsonResponse([
-                'status' => 'error',
-                'message' => 'Request error!'
-            ]);
         endif;
     }
 }

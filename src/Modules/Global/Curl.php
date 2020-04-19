@@ -2,6 +2,7 @@
 namespace Mediashare\Modules;
 Class Curl
 {
+    private $retry = 0;
     public function get(string $url, ?array $headers = null) {
         $result = $this->request($url, null, $headers);
         return $result;
@@ -34,7 +35,10 @@ Class Curl
         curl_close($curl);
 
         if (0 !== $errno) {
-            throw new \RuntimeException($error, $errno);
+            $result = $this->request($url, $arguments, $headers);
+            if ($this->retry > 5):
+                throw new \RuntimeException($error, $errno);
+            endif;
         }
 
         return $result;

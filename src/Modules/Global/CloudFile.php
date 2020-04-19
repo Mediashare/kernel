@@ -62,6 +62,11 @@ Class CloudFile {
         
         if ($result):
             return $result;
+        else:
+            return [
+                'status' => 'error',
+                'response' => $response
+            ];
         endif;
     }
 }

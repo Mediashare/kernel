@@ -43,7 +43,6 @@ Class CloudFile {
         $response = $this->request($url, null, $apiKey);
         return $response;    
     }
-
     
     private function request(string $url, ?array $queries = [], ?string $apiKey = null) {
         $url = rtrim($this->api_url, '/').$url;

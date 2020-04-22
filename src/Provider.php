@@ -7,7 +7,7 @@ use Mediashare\ModulesProvider\Modules;
 class Provider
 {
     public $modules = [];
-    public function run() {
+    public function __construct() {
         $this->addModules($this->getModules("Global"));
         $this->addModules($this->getModules("SEO"));
         $this->addModules($this->getModules("Test"));

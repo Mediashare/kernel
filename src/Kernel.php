@@ -6,6 +6,12 @@ use Mediashare\Kernel\Provider;
 Class Kernel
 {
     public $modules;
+
+    public function __construct() {
+        $this->run();
+        return $this;
+    }
+
     public function run() {
         $this->modules = $this->getModules()->modules;
         return $this;
@@ -13,7 +19,6 @@ Class Kernel
 
     public function getModules() {
         $provider = new Provider();
-        $provider->run();
         return $provider;
     }
 

@@ -1,11 +1,11 @@
 <?php
 namespace Mediashare\Modules;
 
-use Mediashare\Kernel\Kernel;
+use Mediashare\Modules\Curl;
 
 Class CloudFile {
     public $api_url;
-    
+
     public function upload(string $filePath, ?array $metadata = null, ?string $apiKey = null) {
         $url = "/upload";
         if ($metadata):$data = $metadata;endif;
@@ -46,13 +46,11 @@ Class CloudFile {
 
     
     private function request(string $url, ?array $queries = [], ?string $apiKey = null) {
-        $kernel = new Kernel();
-        $request = $kernel->run()->get('Curl');
-        
         $url = rtrim($this->api_url, '/').$url;
         if ($apiKey): $headers = ['apikey: '.$apiKey];
         else: $headers = null; endif;
         
+        $request = new Curl();
         if (empty($queries)):
             $response = $request->get($url, $headers);
         else:

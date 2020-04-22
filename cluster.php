@@ -4,9 +4,6 @@ use Mediashare\Kernel\Kernel;
 use Mediashare\Kernel\Cluster;
 
 $kernel = new Kernel();
-$kernel->run();
-
-// Using Cluster
 $cluster = new Cluster(); // Create Cluster
 $cluster->setModules([
     clone $kernel->get('Hello')->setMessage("[RUN] Git push \n"), 

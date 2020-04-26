@@ -43,6 +43,16 @@ Class CloudFile {
         $response = $this->request($url, null, $apiKey);
         return $response;    
     }
+
+    public function createVolume(string $email, int $size, ?string $password = null) {
+        $url = "/volume/new";
+        $response = $this->request($url, [
+            'email' => $email,
+            'size' => $size,
+            'volume_password' => $password
+        ]);
+        return $response;
+    }
     
     private function request(string $url, ?array $queries = [], ?string $apiKey = null) {
         $url = rtrim($this->api_url, '/').$url;

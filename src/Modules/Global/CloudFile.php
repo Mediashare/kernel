@@ -52,20 +52,12 @@ Class CloudFile {
      * Volumes
      */
 
-    public function createVolume(string $email, int $size, ?string $password = null) {
+    public function createVolume(string $email, int $size, ?string $cloudfile_password = null) {
         $url = "/volume/new";
         $response = $this->request($url, [
             'email' => $email,
             'size' => $size,
-            'volume_password' => $password
-        ]);
-        return $response;
-    }
-    public function retrieveVolumes(string $email, ?string $password = null) {
-        $url = "/volumes/retrieve";
-        $response = $this->request($url, [
-            'email' => $email,
-            'volume_password' => $password
+            'cloudfile_password' => $cloudfile_password
         ]);
         return $response;
     }
@@ -79,14 +71,22 @@ Class CloudFile {
         $response = $this->request($url, [], $apiKey);
         return $response;
     }
-    public function generateApiKey(string $apiKey) {
-        $url = "/volume/generate/apikey";
+    public function resetApiKey(string $apiKey) {
+        $url = "/volume/reset/apikey";
         $response = $this->request($url, [], $apiKey);
         return $response;
     }
     public function deleteVolume(string $apiKey) {
         $url = "/volume/delete";
         $response = $this->request($url, [], $apiKey);
+        return $response;
+    }
+    public function retrieveVolumes(string $email, ?string $cloudfile_password = null) {
+        $url = "/volume/retrieve";
+        $response = $this->request($url, [
+            'email' => $email,
+            'cloudfile_password' => $cloudfile_password
+        ]);
         return $response;
     }
     

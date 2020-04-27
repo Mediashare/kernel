@@ -6,6 +6,10 @@ use Mediashare\Modules\Curl;
 Class CloudFile {
     public $api_url;
 
+    /**
+     * Files
+     */
+
     public function upload(string $filePath, ?array $metadata = null, ?string $apiKey = null) {
         $url = "/upload";
         if ($metadata):$data = $metadata;endif;
@@ -44,6 +48,10 @@ Class CloudFile {
         return $response;    
     }
 
+    /**
+     * Volumes
+     */
+
     public function createVolume(string $email, int $size, ?string $password = null) {
         $url = "/volume/new";
         $response = $this->request($url, [
@@ -61,7 +69,31 @@ Class CloudFile {
         ]);
         return $response;
     }
+    public function getVolume(string $apiKey) {
+        $url = "/volume/info";
+        $response = $this->request($url, [], $apiKey);
+        return $response;
+    }
+    public function clearVolume(string $apiKey) {
+        $url = "/volume/clear";
+        $response = $this->request($url, [], $apiKey);
+        return $response;
+    }
+    public function generateApiKey(string $apiKey) {
+        $url = "/volume/generate/apikey";
+        $response = $this->request($url, [], $apiKey);
+        return $response;
+    }
+    public function deleteVolume(string $apiKey) {
+        $url = "/volume/delete";
+        $response = $this->request($url, [], $apiKey);
+        return $response;
+    }
     
+
+    /**
+     * Send request
+     */
     private function request(string $url, ?array $queries = [], ?string $apiKey = null) {
         $url = rtrim($this->api_url, '/').$url;
         if ($apiKey): $headers = ['apikey: '.$apiKey];

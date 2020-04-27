@@ -12,6 +12,7 @@ class Provider
         $this->addModules($this->getModules("SEO"));
         $this->addModules($this->getModules("Test"));
         $this->addModules($this->getModules("Console"));
+        $this->addModules($this->getModules("Api"));
         return $this;
     }
     public function getModules(string $container) {

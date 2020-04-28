@@ -68,7 +68,7 @@ Class CloudFile {
         return $response;
     }
     public function getVolume(string $apiKey) {
-        $url = "/volume/info";
+        $url = "/volume";
         $response = $this->request($url, [], $apiKey);
         return $response;
     }

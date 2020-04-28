@@ -42,6 +42,12 @@ Class CloudFile {
         return $response;    
     }
 
+    public function getFileRender(string $id, ?string $apiKey = null) {
+        $url = "/render/".$id;
+        $response = $this->request($url, null, $apiKey);
+        return $response;    
+    }
+
     public function removeFile(string $id, ?string $apiKey = null): array {
         $url = "/remove/".$id;
         $response = $this->request($url, null, $apiKey);

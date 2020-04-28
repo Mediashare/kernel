@@ -87,14 +87,6 @@ Class CloudFile {
         $response = $this->request($url, [], $apiKey);
         return $response;
     }
-    public function retrieveVolumes(string $email, ?string $cloudfile_password = null) {
-        $url = "/volume/retrieve";
-        $response = $this->request($url, [
-            'email' => $email,
-            'cloudfile_password' => $cloudfile_password
-        ]);
-        return $response;
-    }
     
 
     /**

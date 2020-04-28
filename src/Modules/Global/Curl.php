@@ -35,11 +35,11 @@ Class Curl
         curl_close($curl);
 
         if (0 !== $errno) {
-            $result = $this->request($url, $arguments, $headers);
+            $this->retry++;
             if ($this->retry > 5):
-                $this->retry++;
                 throw new \RuntimeException($error, $errno);
             endif;
+            $result = $this->request($url, $arguments, $headers);
         }
 
         return $result;

@@ -1,5 +1,9 @@
 <?php
 namespace Mediashare\Modules;
+
+use CloudflareBypass\CFCurlImpl;
+use CloudflareBypass\Model\UAMOptions;
+
 Class Curl
 {
     private $retry = 0;
@@ -21,12 +25,26 @@ Class Curl
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $arguments);
         endif;
-
+        
+        // Header
+        $header = ["User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36"];
         if ($headers):
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $header = array_merge($headers, $header);
         endif;
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
 
-        $result = curl_exec($curl);
+        // CloudFlare ByPass
+        $cfCurl = new CFCurlImpl();
+        $cfOptions = new UAMOptions();
+        $cfOptions->setVerbose(true);
+        // $cfOptions->setDelay(5);
+
+        try {
+            $result = $cfCurl->exec($curl, $cfOptions);
+        } catch (ErrorException $ex) {
+            echo "Unknown error -> " . $ex->getMessage();
+        }
+
         $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         
         // Error(s)

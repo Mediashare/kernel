@@ -15,10 +15,20 @@ Class Curl
         $result = $this->request($url, $arguments, $headers);
         return $result;
     }
-    public function request(string $url, ?array $arguments = null, ?array $headers = null) {
+    public function download(string $url, string $destination, ?array $arguments = null, ?array $headers = null) {
+        $result = $this->request($url, $arguments, $headers, true);
+        $fp = \fopen($destination, 'w'); \fwrite($fp, $result); \fclose($fp);
+        return $destination;
+        
+    }
+    public function request(string $url, ?array $arguments = null, ?array $headers = null, ?bool $download = false) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        if ($download):
+            curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
+        endif;
         curl_setopt($curl, CURLOPT_URL, $url);
 
         if ($arguments): // Post Request
@@ -63,3 +73,4 @@ Class Curl
         return $result;
     }
 }
+

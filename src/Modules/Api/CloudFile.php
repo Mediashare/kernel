@@ -17,15 +17,15 @@ Class CloudFile {
         $response = $this->request($url, $data, $apiKey);
         return $response;
     }
-    
-    public function getStats(): array {
-        $url = "/stats";
-        $response = $this->request($url);
+
+    public function getFiles(?int $page = 1, ?string $apiKey = null): array {
+        $url = "/list/".$page;
+        $response = $this->request($url, null, $apiKey);
         return $response;
     }
 
-    public function getFiles(?string $apiKey = null): array {
-        $url = "/";
+    public function searchFiles(string $query, ?string $apiKey = null): array {
+        $url = "/search?".$query;
         $response = $this->request($url, null, $apiKey);
         return $response;
     }
@@ -58,9 +58,10 @@ Class CloudFile {
      * Volumes
      */
 
-    public function createVolume(string $email, int $size, ?string $cloudfile_password = null) {
+    public function createVolume(string $name, string $email, int $size, ?string $cloudfile_password = null) {
         $url = "/volume/new";
         $response = $this->request($url, [
+            'name' => $name,
             'email' => $email,
             'size' => $size,
             'cloudfile_password' => $cloudfile_password
@@ -70,6 +71,11 @@ Class CloudFile {
     public function getVolume(string $apiKey) {
         $url = "/volume";
         $response = $this->request($url, [], $apiKey);
+        return $response;
+    }
+    public function editVolume(array $queries, string $apiKey) {
+        $url = "/volume/edit";
+        $response = $this->request($url, $queries, $apiKey);
         return $response;
     }
     public function clearVolume(string $apiKey) {

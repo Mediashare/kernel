@@ -11,17 +11,17 @@ Class Curl
         $result = $this->request($url, null, $headers);
         return $result;
     }
-    public function post(string $url, ?array $arguments = null, ?array $headers = null) {
+    public function post(string $url, $arguments = null, ?array $headers = null) {
         $result = $this->request($url, $arguments, $headers);
         return $result;
     }
-    public function download(string $url, string $destination, ?array $arguments = null, ?array $headers = null) {
+    public function download(string $url, string $destination, $arguments = null, ?array $headers = null) {
         $result = $this->request($url, $arguments, $headers, true);
         $fp = \fopen($destination, 'w'); \fwrite($fp, $result); \fclose($fp);
         return $destination;
         
     }
-    public function request(string $url, ?array $arguments = null, ?array $headers = null, ?bool $download = false) {
+    public function request(string $url, $arguments = null, ?array $headers = null, ?bool $download = false) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

@@ -5,7 +5,8 @@
     "require": {
         "mediashare/modules-provider": "*",
         "league/climate": "^3.5",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "kyranrana/cloudflare-bypass": "^3.4"
     },
     "require-dev": {
         "tracy/tracy": "^2.7"

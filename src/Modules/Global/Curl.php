@@ -26,6 +26,8 @@ Class Curl
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 5);
         if ($download):
             curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
         endif;
@@ -51,10 +53,8 @@ Class Curl
         // curl_close($curl);
         // if (0 !== $errno) {
         //     $this->retry++;
-        //     if ($this->retry > 5):
-        //         throw new \RuntimeException($error, $errno);
-        //     endif;
-        //     $result = $this->request($url, $arguments, $headers);
+        //     if ($this->retry > 5): echo new \RuntimeException($error, $errno);
+        //     else: $result = $this->request($url, $arguments, $headers); endif;
         // }
 
         $cfCurl = new CFCurlImpl();
@@ -70,9 +70,9 @@ Class Curl
             $this->retry++;
             if ($this->retry > 5):
                 echo "Unknown error -> " . $ex->getMessage();
-                exit;
+            else:
+                $result = $this->request($url, $arguments, $headers);
             endif;
-            $result = $this->request($url, $arguments, $headers);
         }
 
         return $result;

@@ -2,11 +2,13 @@
     "name": "mediashare/kernel",
     "description": "Mediashare Kernel with all public modules provided.",
     "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "mediashare/modules-provider": "*",
         "league/climate": "^3.5",
         "twig/twig": "^3.0",
-        "kyranrana/cloudflare-bypass": "^3.4"
+        "mediashare/cloudflare-bypass": "*"
     },
     "require-dev": {
         "tracy/tracy": "^2.7"
@@ -18,7 +20,6 @@
             "email": "mediashare.supp@gmail.com"
         }
     ],
-    "minimum-stability": "alpha",
     "autoload": {
         "psr-4": {
             "Mediashare\\Kernel\\": "src/"

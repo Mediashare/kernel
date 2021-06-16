@@ -1,9 +1,6 @@
 <?php
 namespace Mediashare\Modules;
 
-use CloudflareBypass\CFCurlImpl;
-use CloudflareBypass\Model\UAMOptions;
-
 Class Curl
 {
     private $retry = 0;
@@ -45,34 +42,16 @@ Class Curl
         endif;
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
 
-        // $result = curl_exec($curl);
-        // $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        // // Error(s)
-        // $error = curl_error($curl);
-        // $errno = curl_errno($curl);
-        // curl_close($curl);
-        // if (0 !== $errno) {
-        //     $this->retry++;
-        //     if ($this->retry > 5): echo new \RuntimeException($error, $errno);
-        //     else: $result = $this->request($url, $arguments, $headers); endif;
-        // }
-
-        $cfCurl = new CFCurlImpl();
-        $cfOptions = new UAMOptions();
-        $cfOptions->setVerbose(false);
-        // $cfOptions->setDelay(5);
-
-        try {
-            $result = $cfCurl->exec($curl, $cfOptions);
-            // Want to get clearance cookies ?
-            //$cookies = curl_getinfo($ch, CURLINFO_COOKIELIST);
-        } catch (ErrorException $ex) {
+        $result = curl_exec($curl);
+        $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // Error(s)
+        $error = curl_error($curl);
+        $errno = curl_errno($curl);
+        curl_close($curl);
+        if (0 !== $errno) {
             $this->retry++;
-            if ($this->retry > 5):
-                echo "Unknown error -> " . $ex->getMessage();
-            else:
-                $result = $this->request($url, $arguments, $headers);
-            endif;
+            if ($this->retry > 5): echo new \RuntimeException($error, $errno);
+            else: $result = $this->request($url, $arguments, $headers); endif;
         }
 
         return $result;

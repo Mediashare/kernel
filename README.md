@@ -1,6 +1,4 @@
 # Kernel
-**[DEPRECATED] Go to [Gitlab Project](https://gitlab.marquand.pro/MarquandT/kernel)**
-
 Le kernel de Mediashare permet l'intégration simple des différentes libraries créer avec le [Modules Provider](http://slote.me/Libraries/modules-provider.html). [Kernel Documentation](https://mediashare.fr/Kernel/)
 
 ## Installation
